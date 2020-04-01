@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supsmart.portal.dao.CourseDao">
+
+    <resultMap type="com.supsmart.portal.entity.Course" id="CourseMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="classify" column="classify" jdbcType="VARCHAR"/>
+        <result property="classifyName" column="classify_name" jdbcType="VARCHAR"/>
+        <result property="subClassify" column="sub_classify" jdbcType="VARCHAR"/>
+        <result property="subClassifyName" column="sub_classify_name" jdbcType="VARCHAR"/>
+        <result property="direction" column="direction" jdbcType="VARCHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="level" column="level" jdbcType="INTEGER"/>
+        <result property="free" column="free" jdbcType="INTEGER"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="time" column="time" jdbcType="VARCHAR"/>
+        <result property="onsale" column="onsale" jdbcType="INTEGER"/>
+        <result property="picture" column="picture" jdbcType="VARCHAR"/>
+        <result property="brief" column="brief" jdbcType="VARCHAR"/>
+        <result property="recommend" column="recommend" jdbcType="INTEGER"/>
+        <result property="weight" column="weight" jdbcType="INTEGER"/>
+        <result property="studyCount" column="study_count" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="createUser" column="create_user" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="updateUser" column="update_user" jdbcType="VARCHAR"/>
+        <result property="del" column="del" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CourseMap">
+        select
+          id, name, type, classify, classify_name, sub_classify, sub_classify_name, direction, username, level, free, price, time, onsale, picture, brief, recommend, weight, study_count, create_time, create_user, update_time, update_user, del
+        from ocdb.t_course
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CourseMap">
+        select
+          id, name, type, classify, classify_name, sub_classify, sub_classify_name, direction, username, level, free, price, time, onsale, picture, brief, recommend, weight, study_count, create_time, create_user, update_time, update_user, del
+        from ocdb.t_course
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="CourseMap">
+        select
+          id, name, type, classify, classify_name, sub_classify, sub_classify_name, direction, username, level, free, price, time, onsale, picture, brief, recommend, weight, study_count, create_time, create_user, update_time, update_user, del
+        from ocdb.t_course
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="classify != null and classify != ''">
+                and classify = #{classify}
+            </if>
+            <if test="classifyName != null and classifyName != ''">
+                and classify_name = #{classifyName}
+            </if>
+            <if test="subClassify != null and subClassify != ''">
+                and sub_classify = #{subClassify}
+            </if>
+            <if test="subClassifyName != null and subClassifyName != ''">
+                and sub_classify_name = #{subClassifyName}
+            </if>
+            <if test="direction != null and direction != ''">
+                and direction = #{direction}
+            </if>
+            <if test="username != null and username != ''">
+                and username = #{username}
+            </if>
+            <if test="level != null">
+                and level = #{level}
+            </if>
+            <if test="free != null">
+                and free = #{free}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="time != null and time != ''">
+                and time = #{time}
+            </if>
+            <if test="onsale != null">
+                and onsale = #{onsale}
+            </if>
+            <if test="picture != null and picture != ''">
+                and picture = #{picture}
+            </if>
+            <if test="brief != null and brief != ''">
+                and brief = #{brief}
+            </if>
+            <if test="recommend != null">
+                and recommend = #{recommend}
+            </if>
+            <if test="weight != null">
+                and weight = #{weight}
+            </if>
+            <if test="studyCount != null">
+                and study_count = #{studyCount}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="createUser != null and createUser != ''">
+                and create_user = #{createUser}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="updateUser != null and updateUser != ''">
+                and update_user = #{updateUser}
+            </if>
+            <if test="del != null">
+                and del = #{del}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into ocdb.t_course(name, type, classify, classify_name, sub_classify, sub_classify_name, direction, username, level, free, price, time, onsale, picture, brief, recommend, weight, study_count, create_time, create_user, update_time, update_user, del)
+        values (#{name}, #{type}, #{classify}, #{classifyName}, #{subClassify}, #{subClassifyName}, #{direction}, #{username}, #{level}, #{free}, #{price}, #{time}, #{onsale}, #{picture}, #{brief}, #{recommend}, #{weight}, #{studyCount}, #{createTime}, #{createUser}, #{updateTime}, #{updateUser}, #{del})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update ocdb.t_course
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="classify != null and classify != ''">
+                classify = #{classify},
+            </if>
+            <if test="classifyName != null and classifyName != ''">
+                classify_name = #{classifyName},
+            </if>
+            <if test="subClassify != null and subClassify != ''">
+                sub_classify = #{subClassify},
+            </if>
+            <if test="subClassifyName != null and subClassifyName != ''">
+                sub_classify_name = #{subClassifyName},
+            </if>
+            <if test="direction != null and direction != ''">
+                direction = #{direction},
+            </if>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="level != null">
+                level = #{level},
+            </if>
+            <if test="free != null">
+                free = #{free},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="time != null and time != ''">
+                time = #{time},
+            </if>
+            <if test="onsale != null">
+                onsale = #{onsale},
+            </if>
+            <if test="picture != null and picture != ''">
+                picture = #{picture},
+            </if>
+            <if test="brief != null and brief != ''">
+                brief = #{brief},
+            </if>
+            <if test="recommend != null">
+                recommend = #{recommend},
+            </if>
+            <if test="weight != null">
+                weight = #{weight},
+            </if>
+            <if test="studyCount != null">
+                study_count = #{studyCount},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="createUser != null and createUser != ''">
+                create_user = #{createUser},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="updateUser != null and updateUser != ''">
+                update_user = #{updateUser},
+            </if>
+            <if test="del != null">
+                del = #{del},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from ocdb.t_course where id = #{id}
+    </delete>
+
+</mapper>

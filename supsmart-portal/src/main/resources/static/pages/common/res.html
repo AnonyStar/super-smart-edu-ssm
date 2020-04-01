@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<!-- th:fragment 定义需要引入的代码块，该div包含的内容即为引用的公共内容 -->
+<div th:fragment="myres">
+    <div class="res">
+        <!--<&#45;&#45;f-header内容&ndash;&gt;-->
+
+        <link th:href="@{~/res/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+        <link th:href="@{~/res/css/reset.css}" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" th:src="@{/res/js/jquery-1.11.3.min.js}"></script>
+        <script type="text/javascript" th:src="@{~/res/js/jquery.form.js}"></script>
+        <script type="text/javascript" th:src="@{/res/js/bootstrap.min.js}"></script>
+        <script type="text/javascript" th:src="@{/res/js/validate.min.js}"></script>
+
+        <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <link rel="icon" type="image/png" th:href="@{/res/i/ico.png}" sizes="16x16">
+
+        <script th:inline="javascript" type="text/javascript">
+            var ctxPath=[[${#httpServletRequest.getContextPath()}]];
+           /* CONTEXT_PATH = '${s.base}';
+
+            <@shiro.guest>
+            SHIRO_LOGIN = false;
+            </@shiro.guest>
+
+            <@shiro.user>
+            SHIRO_LOGIN = true;//是否已经登录
+            </@shiro.user>
+
+            $(function(){
+                // 设置jQuery Ajax全局的参数
+                $.ajaxSetup({
+                    type: "POST",
+                    complete:function(xhr,status){
+                        if(xhr.responseJSON.errcode == 1001){//登录超时
+                            window.location.href=CONTEXT_PATH+"/auth/login.html";
+                        }
+                    }
+                });
+            });*/
+        </script>
+    </div>
+</div>
+</html>
+
+
+
+

@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<!-- th:fragment 定义需要引入的代码块，该div包含的内容即为引用的公共内容 -->
+<div th:fragment="myheader">
+	<div class="header">
+		<!--<&#45;&#45;f-header内容&ndash;&gt;-->
+		<div class="f-header">
+			<div class="f-header-box clearfix">
+				<a href="${s.base}"  class="logo" title="易码实验室"></a>
+				<nav class="header-nav">
+					<a href="${s.base}" class="header-nav-item">首 页</a>
+					<a href="${s.base}/course/list.html" class="header-nav-item">课 程</a>
+					<a href="${s.base}/user/home.html" class="header-nav-item">我的</a>
+					<a href="http://opt.ioswift.org" target="_blank" class="header-nav-item" style="width:100px;">运营CMS</a>
+					<a href="http://m.ioswift.org" target="_blank" class="header-nav-item" style="width:100px;">M站</a>
+				</nav>
+			</div>
+		</div>
+		<script>
+			function reloadIndityImg(eleId){
+				document.getElementById(eleId).src = CONTEXT_PATH + "/tools/identiry/code.html?ticket=" + Math.random();
+			}
+		</script>
+	</div>
+</div>
+</html>
